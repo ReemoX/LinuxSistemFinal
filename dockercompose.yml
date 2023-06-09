@@ -31,6 +31,72 @@ environment:
 -MYSQL_PASSWORD=030718036
 -MYSQL_ROOT_PASSWORDE=030718036
 
+nginx:
+image: nginx:latest
+ports:
+- 192.168.0.18:80:80
+volumes:
+-./nginx/conf.d:/etc/nginx/conf.d
+-./nginx/sites:/etc/nginx/sites-available
+-./nginx/sites-enabled:/etc/nginx/csites-enabled
+restart: always
+
+
+certbot:
+image: certbot/certbot
+volumes:
+- ./certbot/conf:/etc/letsencrypt
+- ./certbot/www:var/www/certbot
+depends_on:
+-nginx
+
+command: certonly --webroot --webroot-path=/var/lib/www/certbot --email degirmenci.omer@std.izu.edu.tr -- agree-tos --no-eff-email --force-renewal -d degirmenciomer.me -d www.degirmenciomer.me
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
