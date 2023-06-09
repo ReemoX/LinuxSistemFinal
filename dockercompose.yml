@@ -1,1 +1,36 @@
-# LinuxSistemFinal
+version : 3 
+services:
+drupal:
+image: drupal:latest
+ports:
+-8080:80
+volumes:
+-./drupal/modules:/var/www/html/modules
+-./drupal/profiles:/var/www/html/profiles
+-./drupal/themes:/var/www/html/themes
+-./drupal/sites:/var/www/html/sites
+restart:always
+environment:
+-MYSQL_HOST=database
+-MYSQL_DATABASE=FİNAL
+-MYSQL_USER=YAM428
+-MYSQL_PASSWORD=030718036
+depends_on:
+-database
+
+database: 
+image:mysql:5.7
+ports:
+-3306:3306
+volumes:
+-./mysql:/var/lib/mysql
+restart:always
+environment:
+-MYSQL_DATABASE=FİNAL
+-MYSQL_USER=YAM428
+-MYSQL_PASSWORD=030718036
+-MYSQL_ROOT_PASSWORDE=030718036
+
+
+
+
